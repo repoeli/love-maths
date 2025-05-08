@@ -16,8 +16,22 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     document.getElementById("answer-box").addEventListener("keydown", function(event) {
+
         if (event.key === "Enter") {
-            checkAnswer();
+            checkAnswer(); // Submit answer when the user presses "Enter"
+        } else if (event.key === "Escape") {
+            document.getElementById("answer-box").value = ""; // Clear the input box
+            document.getElementById("answer-box").focus(); // Refocus on the input box
+        } else if (event.key === "+") {
+            runGame("addition"); // Restart the addition game
+        }
+        else if (event.key === "-") {
+            runGame("subtract"); // Restart the subtraction game
+        } else if (event.key === "*") {
+            runGame("multiply"); // Restart the multiplication game
+        } else if (event.key === "/") {
+
+            runGame("division"); // Restart the division game
         }
     });
 
@@ -31,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function runGame(gameType) {
 
-    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").textContent = "" // Clear the input box;
     document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25
