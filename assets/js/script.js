@@ -1,11 +1,11 @@
 // Wait for the DOM to finish loading before running the game
 // Get the button elements and add event listeners to them
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "submit") {
                 checkAnswer();
             } else {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
 
         if (event.key === "Enter") {
             checkAnswer(); // Submit answer when the user presses "Enter"
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function runGame(gameType) {
 
-    document.getElementById("answer-box").textContent = "" // Clear the input box;
-    document.getElementById("answer-box").focus();
+    document.getElementById("answer-box").value = ""; // Clear the input box
+    document.getElementById("answer-box").focus(); // Refocus on the input box
 
     // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
@@ -56,9 +56,9 @@ function runGame(gameType) {
         displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
-    } else if (gameType === "subtract" ) {
+    } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
-    } else if (gameType === "division" ) {
+    } else if (gameType === "division") {
         displayDivideQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
@@ -77,6 +77,7 @@ function checkAnswer() {
     let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
 
+    // Check if the answer is correct
     if (isCorrect) {
         alert("Hey! You got it right! :D");
         incrementScore();
@@ -107,7 +108,7 @@ function calculateCorrectAnswer() {
         return [operand1 - operand2, "subtract"];
     } else if (operator === "/") {
         return [operand1 / operand2, "division"];
-    }else {
+    } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
@@ -132,7 +133,7 @@ function incrementWrongAnswer() {
 
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
     document.getElementById("incorrect").innerText = ++oldScore;
-    
+
 }
 
 /**
@@ -153,7 +154,7 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "+";
-    
+
 }
 
 // Display a subtraction question
@@ -188,5 +189,21 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
+
+}
+
+// Display a division question
+// Note: This is not the best way to handle division in a real application
+// but is sufficient for this simple game
+// In a real application, you would want to handle division
+// and other math operations more robustly
+// For example, you could use a library like math.js to handle division
+// and other math operations more robustly
+// This is a simple way to ensure integer division
+function displayDivideQuestion(operand1, operand2) {
+
+    document.getElementById('operand1').textContent = operand1 * operand2;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
 
 }
