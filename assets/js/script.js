@@ -124,7 +124,8 @@ function incrementScore() {
 
 }
 
-/**
+/** 
+ * Increments the incorrect answers tally
  * Gets the current tally of incorrect answers from the DOM and increments it by 1
  */
 function incrementWrongAnswer() {
@@ -134,6 +135,19 @@ function incrementWrongAnswer() {
     
 }
 
+/**
+ * Displays addition question
+ * @param {number} operand1 - The first operand
+ * @param {number} operand2 - The second operand
+ */
+// Display an addition question
+// Note: This is not the best way to handle addition in a real application
+// but is sufficient for this simple game
+// In a real application, you would want to handle addition
+// and other math operations more robustly
+// For example, you could use a library like math.js to handle addition
+// and other math operations more robustly
+// This is a simple way to ensure integer addition
 function displayAdditionQuestion(operand1, operand2) {
 
     document.getElementById('operand1').textContent = operand1;
@@ -142,6 +156,17 @@ function displayAdditionQuestion(operand1, operand2) {
     
 }
 
+// Display a subtraction question
+// Ensure that the first operand is greater than the second
+// to avoid negative answers
+// This is a simple way to ensure integer subtraction
+// Note: This is not the best way to handle subtraction in a real application
+// but is sufficient for this simple game
+// In a real application, you would want to handle subtraction
+// and other math operations more robustly
+// For example, you could use a library like math.js to handle subtraction
+// and other math operations more robustly
+// This is a simple way to ensure integer subtraction
 function displaySubtractQuestion(operand1, operand2) {
 
     document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
@@ -150,27 +175,18 @@ function displaySubtractQuestion(operand1, operand2) {
 
 }
 
+// Display a multiplication question
+// Note: This is not the best way to handle multiplication in a real application
+// but is sufficient for this simple game
+// In a real application, you would want to handle multiplication
+// and other math operations more robustly
+// For example, you could use a library like math.js to handle multiplication
+// and other math operations more robustly
+// This is a simple way to ensure integer multiplication
 function displayMultiplyQuestion(operand1, operand2) {
 
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
-
-}
-
-function displayDivideQuestion(operand1, operand2) {
-    // Ensure that operand1 is greater than operand2 for division
-    if (operand1 < operand2) {
-        [operand1, operand2] = [operand2, operand1]; // Swap values
-    }
-    // Ensure that operand1 is divisible by operand2
-    while (operand1 % operand2 !== 0) {
-        operand1 = Math.floor(Math.random() * 25) + 1;
-        operand2 = Math.floor(Math.random() * 25) + 1;
-    }
-    // Display the question
-    document.getElementById('operand1').textContent = operand1;
-    document.getElementById('operand2').textContent = operand2;
-    document.getElementById('operator').textContent = "/";
 
 }
